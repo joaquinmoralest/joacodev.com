@@ -2,11 +2,22 @@ import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Ubuntu } from '@next/font/google'
+import { getAllPostsFromWordPress } from '../utils'
 
 const ubuntu = Ubuntu({
   weight: ['300', '400', '500', '700'], 
   subsets: ['latin'] 
 })
+
+// export async function getStaticProps({ preview = false }) {
+//   const allPosts = await getAllPostsFromWordPress(preview)
+//   console.log(allPosts)
+
+//   return {
+//     props: { allPosts, preview },
+//     revalidate: 10,
+//   }
+// }
 
 export default function Home() {
   return (
