@@ -4,6 +4,8 @@ import Layout from '../components/Layout'
 import styles from '../styles/Home.module.css'
 import { getDocs, collection } from 'firebase/firestore'
 import { db } from './_app'
+import Card from '../components/Card'
+import Stack from '../components/Stack'
 
 export default function Home({ data }) {
   console.log(data)
@@ -13,72 +15,80 @@ export default function Home({ data }) {
       title="Joaquin Morales - Software developer" 
       description="Portfolio and blog about development, technologies and best practices"
     >
-      <header className="bg-slate-700 flex items-center flex-col">
-        <section className='w-full h-screen flex flex-col items-center justify-evenly p-5 '>
-          <div className='w-full flex flex-col justify-center items-center'>
-            <Image src="/images/profile-pic.png" width={200} height={200} alt="profile" />
-            <p className='text-4xl font-medium mt-5 mb-1 text-center text-slate-200'>¡Hola! Mi nombre es Joaquin</p>
-            <p className='text-xl font-medium text-center text-slate-200'>Soy desarrollador Frontend</p>
+      <header className="bg-slate-900 flex items-center flex-col">
+        <div className={styles.header}>
+          <div className={styles.info}>
+            <div className={styles.presentation}>
+              <h1>¡Hola! Soy Joaquín</h1>
+              <p>Desarrollador Frontend hace alrededor de 2 años. Comencé como autodidacta aprendiendo a hacer paginas web con html y css, hasta que me di cuenta que era algo que me apasionaba. Desde ese momento comence a aprender cada vez más realizando proyectos para pulir mis habilidades...</p>
+              <button className={styles.btnPrimary}>Ver proyectos</button>
+            </div>
+            <div className={styles.avatar}>
+              <Image src="/images/profile-pic.png" width={1000} height={1000} />
+            </div>
           </div>
-        </section>
+
+          <div className={styles.rrss}>
+            <a href='#'>
+              <Image src="/icons/instagram.svg" width={35} height={35} />
+            </a>
+            <a href='#'>
+              <Image src="/icons/youtube.svg" width={50} height={50} />
+            </a>
+            <a href='#'>
+              <Image src="/icons/twitter.svg" width={45} height={45} />
+            </a>
+            <a href='#'>
+              <Image src="/icons/linkedin.svg" width={32} height={32} />
+            </a>
+            <a href='#'>
+              <Image src="/icons/github.svg" width={40} height={40} />
+            </a>
+            
+          </div>
+        </div>
+        
       </header>
       
-      <main>
-        <section className='mt-14 m-auto max-w-2xl p-10'>
-          <h2 className='text-3xl text-center mb-10'>Stack</h2>
-          <div className='grid grid-cols-6 gap-8 place-items-center'>
-            <div className='drop-shadow-md'>
-              <Image src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" width={60} height={60} alt='icono html' title='HTML' />
-            </div>
-            <div className='drop-shadow-md'>
-              <Image src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" width={60} height={60} alt='icono css' title='CSS' />
-            </div>
-            <div className='drop-shadow-md'>
-              <Image src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" width={60} height={60} alt='icono javascript' title='Javascript' />
-            </div>
-            <div className='drop-shadow-md'>
-              <Image src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" width={60} height={60} alt='icono react' title='React' />         
-            </div>
-            <div className='drop-shadow-md'>
-              <Image src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/svelte/svelte-original.svg" width={60} height={60} alt='icono svelte' title='Svelte' />          
-            </div>
-            <div className='drop-shadow-md'>
-              <Image src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg" width={60} height={60} alt='icono bootstrap' title='Bootstrap' />          
-            </div>
-            <div className='drop-shadow-md'>
-              <Image src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original-wordmark.svg" width={60} height={60} alt='icono tailwind' title='Tailwind' />
-            </div>
-            <div className='drop-shadow-md'>
-              <Image src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg" width={60} height={60} alt='icono firebase' title='Firebase' />
-            </div>
-            <div className='drop-shadow-md'>
-              <Image src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" width={60} height={60} alt='icono git' title='Git' />
-            </div>
-            <div className='drop-shadow-md'>
-              <Image src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" width={60} height={60} alt='icono github' title='Github' />
-            </div>
-            <div className='drop-shadow-md'>
-              <Image src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" width={60} height={60} alt='icono next js' title='Next Js' />
-            </div>
-            <div className='drop-shadow-md'>
-              <Image src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/wordpress/wordpress-plain.svg" width={60} height={60} alt='icono wordpress' title='Wordpress' />
+      <main className='bg-slate-900'>
+        <section className='m-auto h-screen flex flex-col justify-center items-center max-w-2xl p-10'>
+          <h2 className='text-center mb-10'>Stack</h2>
+          <Stack />
+        </section>
+
+        <section className='mt-14 min-h-screen flex justify-center items-center p-10'>
+          <div className='w-full'>
+            <h2 className='text-center mb-10'>Proyectos destacados</h2>
+            <div className='flex justify-evenly flex-wrap'>
+              <Card 
+                src="/images/expense-tracker.png" 
+                url="https://expenses-tracker-three-sooty.vercel.app/"
+                title="Expenses Tracker" 
+                description="Aplicacion de seguimiento de gastos, que integra firebase para guardar los datos y librerias para mostrar reportes."
+              />
+              <Card
+                src="/images/calculator.png"
+                url="https://trusting-heisenberg-37a0f2.netlify.app/" 
+                title="Calculadora"
+                description="Tipica app de calculadora con un diseño moderno."
+              />
+              <Card 
+                src="/images/pokedex.png" 
+                url="https://new-pokedex-cyan.vercel.app/"
+                title="Pokedex"
+                description="Aplicacion del clima construida con Svelte que nos trae la informacion relevante a traves de una api publica."
+              />
             </div>
           </div>
         </section>
 
-        <section className='mt-14 bg-slate-700 text-slate-200 p-10'>
-          <h2 className='text-3xl text-center mb-10'>Ultimos proyectos</h2>
-          <p>Carrussel ancho completo con video resumen del proyecto mostrado</p>
-        </section>
-
-        <section className='mt-14 bg-slate-700 text-slate-200 p-10'>
-          <h2 className='text-3xl text-center mb-10'>Ultimas publicaciones</h2>
+        <section className='mt-14 p-10'>
+          <h2 className='text-center mb-10'>Ultimas publicaciones</h2>
           <p>Cards de las ultimas 3 publicaciones</p>
         </section>
 
         <section className='mt-14' id='contact'>
-          <h2 className='text-3xl text-center'>Contacto</h2>
-          <form></form>
+          <h2 className='text-center'>Contacto</h2>
         </section>
       </main>
     </Layout>
