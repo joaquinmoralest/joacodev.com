@@ -1,6 +1,10 @@
+import Navbar from "./Navbar"
+
 function Footer() {
   return (
-    <div>Footer</div>
+    <div className="h-5">
+      <Navbar />
+    </div>
   )
 }
 
