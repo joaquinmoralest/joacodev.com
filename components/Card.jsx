@@ -1,14 +1,23 @@
 import Image from "next/image"
+import styles from '../styles/Card.module.css'
+import Tag from "./Tag"
 
 function Card({ src, url, title, description }) {
   return (
-    <div className='bg-white rounded-md shadow-md shadow-slate-400 text-slate-700 w-80 mb-5'>
+    <div className={styles.card}>
       <div>
-        <img src={src} alt={`previsualizacion del proyecto ${title}`} />
+        <div className={styles.container}>
+          <img className={styles.image} src={src} alt={`previsualizacion del proyecto ${title}`} />
+        </div>
+        <div className='my-7'>
+          <a className="text-2xl text-white" href={url} target="_blank" rel="noreferrer">{title}</a>
+          <p className="mt-2 text-white">{description}</p>
+        </div>
       </div>
-      <div className='p-5'>
-        <a className="text-2xl" href={url} target="_blank" rel="noreferrer">{title}</a>
-        <p className="mt-2">{description}</p>
+      <div className={styles.tags}>
+        <Tag />
+        <Tag />
+        <Tag />
       </div>
     </div>
   )
