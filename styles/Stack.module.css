@@ -1,0 +1,9 @@
+.stack {
+  display: grid;
+  padding: 40px;
+  border-radius: 12px;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 2rem;
+  place-items: center;
+  background-color: #466bc2;
+}

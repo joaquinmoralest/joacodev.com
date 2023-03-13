@@ -18,7 +18,7 @@ export default function Home({ data }) {
         <div className={styles.header}>
           <div className={styles.info}>
             <div className={styles.presentation}>
-              <h1>¡Hola! Soy Joaquín</h1>
+              <h1 className='mb-3'>¡Hola! Soy Joaquín</h1>
               <p>Desarrollador Frontend hace alrededor de 2 años. Comencé como autodidacta aprendiendo a hacer paginas web con html y css, hasta que me di cuenta que era algo que me apasionaba. Desde ese momento comence a aprender cada vez más realizando proyectos para pulir mis habilidades...</p>
               <a href='#projects' className={styles.btnPrimary}>Ver proyectos</a>
             </div>
@@ -85,13 +85,13 @@ export default function Home({ data }) {
         </section>
 
         <section className='m-auto h-screen flex flex-col justify-center items-center max-w-2xl p-10'>
-          <h2 className='text-center mb-10'>Stack</h2>
+          <h2 className='text-center mb-1'>Mis Skills</h2>
+          <p className='mb-12 text-center'>Los lenguajes y tecnologias donde más tengo experiencia</p>
           <Stack />
         </section>
 
-        <section id='contact'>
-          <h2 className='text-center'>Contacto</h2>
-          <div className='flex justify-center mt-10'>
+        <section className='' id='contact'>
+          <div className='flex justify-center'>
             <SocialNetworks />
           </div>
         </section>

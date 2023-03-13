@@ -1,8 +1,9 @@
 import Image from "next/image"
+import styles from '../styles/Stack.module.css'
 
 function Stack() {
   return (
-    <div className='grid grid-cols-6 gap-8 place-items-center'>
+    <div className={styles.stack}>
       <div className='drop-shadow-md hover:scale-110 transition ease-in duration-100'>
         <Image src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" width={60} height={60} alt='icono html' title='HTML' />
       </div>
