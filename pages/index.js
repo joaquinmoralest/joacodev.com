@@ -28,7 +28,7 @@ export default function Home({ data }) {
             </div>
           </div>
 
-          <SocialNetworks absolute={true} />
+          <SocialNetworks absolute />
         </div>
       </header>
       
