@@ -7,3 +7,15 @@
   place-items: center;
   background-color: #466bc2;
 }
+
+@media (max-width: 720px) {
+  .stack {
+    display: grid;
+    padding: 30px;
+    border-radius: 12px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    place-items: center;
+    background-color: #466bc2;
+  }
+}
