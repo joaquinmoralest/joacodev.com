@@ -2,7 +2,7 @@ import Image from "next/image"
 import styles from '../styles/Card.module.css'
 import Tag from "./Tag"
 
-function Card({ src, url, title, description }) {
+function Card({ src, url, title, description, tags }) {
   return (
     <div className={styles.card}>
       <div>
@@ -15,9 +15,14 @@ function Card({ src, url, title, description }) {
         </div>
       </div>
       <div className={styles.tags}>
-        <Tag />
-        <Tag />
-        <Tag />
+        {tags?.map((tag) => {
+          return(
+            <Tag 
+              key={tag}
+              name={tag}
+            />
+          )
+        })}
       </div>
     </div>
   )
