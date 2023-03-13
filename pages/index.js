@@ -24,7 +24,7 @@ export default function Home({ data }) {
               <a href='#projects' className={styles.btnPrimary}>Ver proyectos</a>
             </div>
             <div className={styles.avatar}>
-              <Image src="/images/profile-pic.png" width={1000} height={1000} />
+              <Image src="/images/profile-pic.png" width={1000} height={1000} alt='Foto de Joaquin' />
             </div>
           </div>
 
