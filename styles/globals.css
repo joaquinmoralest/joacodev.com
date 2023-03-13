@@ -32,3 +32,19 @@ a {
 * {
   box-sizing: border-box;
 }
+
+@media (max-width: 420px) {
+  h1 {
+    font-size: 2.5rem;
+  }
+
+  h2 {
+    font-size: 2rem;
+    line-height: 35px;
+    padding-bottom: 6px;
+  }
+
+  p {
+    font-size: 14px;
+  }
+}
