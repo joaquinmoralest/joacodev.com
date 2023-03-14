@@ -1,9 +1,10 @@
 import Image from 'next/image'
+import { useEffect, useState } from 'react'
 import styles from '../styles/SocialNetworks.module.css'
 
-function SocialNetworks({ absolute }) {
+function SocialNetworks({ absolute, isMobile }) {
   return (
-    <div className={`${styles.rrss} ${absolute && styles.absolute}`}>
+    <div className={`${styles.rrss} ${absolute && styles.absolute} ${isMobile && styles.hide}`}>
       <a href='#'>
         <Image src="/icons/instagram.svg" width={35} height={35} alt='logo instagram' />
       </a>

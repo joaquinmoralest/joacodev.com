@@ -8,8 +8,21 @@ import Card from '../components/Card'
 import Stack from '../components/Stack'
 import SocialNetworks from '../components/SocialNetworks'
 import { projects } from '../data/projects'
+import { useEffect, useState } from 'react'
 
 export default function Home({ data }) {
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    let screenWidth = window.screen.width
+
+    if (screenWidth < 420) {
+      setIsMobile(true)
+    } else {
+      setIsMobile(false)
+    }
+  }, [])
+
   return (
     <Layout
       title="Joaquin Morales - Software developer" 
@@ -28,7 +41,7 @@ export default function Home({ data }) {
             </div>
           </div>
 
-          <SocialNetworks absolute />
+          <SocialNetworks absolute isMobile={isMobile} />
         </div>
       </header>
       
