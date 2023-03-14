@@ -10,3 +10,7 @@
   position: absolute;
   bottom: 30px;
 }
+
+.rrss.hide {
+  display: none;
+}
