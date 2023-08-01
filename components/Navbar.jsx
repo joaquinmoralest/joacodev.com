@@ -18,12 +18,11 @@ function Navbar() {
           <div>
             <p>JoacoDev</p>
           </div>
-          <div className='w-96 flex justify-between'>
+          <div className='w-72 flex justify-between'>
             <Link className='hover:text-slate-200 transition ease-in-out duration-300' href='/'>Inicio</Link>
             <Link className='hover:text-slate-200 transition ease-in-out duration-300' href='/about'>Sobre mi</Link>
             <Link className='hover:text-slate-200 transition ease-in-out duration-300' href='/portfolio'>Portafolio</Link>
             <Link className='hover:text-slate-200 transition ease-in-out duration-300' href='/blog'>Blog</Link>
-            <Link className='hover:text-slate-200 transition ease-in-out duration-300' href='#contact'>Contacto</Link>
           </div>
         </>
       : <Menu 
@@ -37,7 +36,6 @@ function Navbar() {
           <Link className='hover:text-slate-200 transition ease-in-out duration-300' href='/about'>Sobre mi</Link>
           <Link className='hover:text-slate-200 transition ease-in-out duration-300' href='/portfolio'>Portafolio</Link>
           <Link className='hover:text-slate-200 transition ease-in-out duration-300' href='/blog'>Blog</Link>
-          <Link className='hover:text-slate-200 transition ease-in-out duration-300' href='#contact'>Contacto</Link>
         </Menu>
       }
     </nav>

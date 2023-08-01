@@ -1,10 +1,12 @@
-import Navbar from "./Navbar"
+import SocialNetworks from "./SocialNetworks"
 
 function Footer() {
   return (
-    <div className="h-5">
-      <Navbar />
-    </div>
+    <footer className="h-5">
+      <div className='flex justify-center p-5'>
+        <SocialNetworks />
+      </div>
+    </footer>
   )
 }
 

@@ -8,7 +8,7 @@ export const projects = [
     src: '/images/calculator.png',
     description: 'Tipica app de calculadora con un diseño moderno.',
     stack: ['HTML', 'CSS', 'Javascript'],
-    isFavorite: false,
+    isFavorite: true,
   },
   {
     id: nanoid(),

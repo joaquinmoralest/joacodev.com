@@ -1,8 +1,8 @@
-import Card from "../components/Card"
-import Layout from "../components/Layout"
-import { projects } from "../data/projects"
+import Card from "../../components/Card"
+import Layout from "../../components/Layout"
+import { projects } from "../../data/projects"
 
-function portfolio() {
+function Portfolio() {
   return (
     <Layout>
       <h2 className="pt-16 text-center">Portfolio</h2>
@@ -26,4 +26,4 @@ function portfolio() {
   )
 }
 
-export default portfolio
+export default Portfolio

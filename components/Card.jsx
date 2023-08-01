@@ -10,8 +10,8 @@ function Card({ src, url, title, description, tags }) {
           <Image className={styles.image} src={src} width={500} height={500} alt={`previsualizacion del proyecto ${title}`} />
         </div>
         <div className='my-7'>
-          <a className="text-2xl text-white" href={url} target="_blank" rel="noreferrer">{title}</a>
-          <p className="mt-2 text-white">{description}</p>
+          <a className="text-xl text-white" href={url} target="_blank" rel="noreferrer">{title}</a>
+          <p className="mt-2 text-white text-xs">{description}</p>
         </div>
       </div>
       <div className={styles.tags}>
