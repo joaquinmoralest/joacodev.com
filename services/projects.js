@@ -1,5 +1,3 @@
-import { usePathname } from 'next/navigation'
-
 export async function getProjects() {
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/projects?populate[cover][fields][0]=url`)
 

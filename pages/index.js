@@ -1,6 +1,4 @@
 import Layout from '../components/Layout'
-import { getDocs, collection } from 'firebase/firestore'
-import { db } from './_app'
 import Header from '../components/Header'
 import LatestProjects from '../components/LatestProjects'
 import Skills from '../components/Skills'
@@ -8,7 +6,7 @@ import Skills from '../components/Skills'
 export default function Home({ data }) {
   return (
     <Layout
-      title="Joaquín Morales - Software developer" 
+      title="Joaquín Morales - Software developer"
       description="Portfolio and blog about development, technologies and best practices"
     >
       <Header />
@@ -46,19 +44,4 @@ export default function Home({ data }) {
       </main>
     </Layout>
   )
-}
-
-export async function getServerSideProps() {
-  const querySnapshot = await getDocs(collection(db, "projects"))
-  let data = []
-
-  querySnapshot.forEach((doc) => {
-    data = [...data, doc.data()]
-  })
-
-  return {
-    props: {
-      data,
-    }
-  }
 }
