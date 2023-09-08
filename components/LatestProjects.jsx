@@ -1,26 +1,33 @@
 import Link from "next/link";
 import Card from "./Card";
-import styles from "../styles/Home.module.css"
-import { projects } from '../data/projects'
+import styles from "../styles/LatestProjects.module.css"
+import { useEffect, useState } from "react";
+import { getCoverImage, getProjects } from "../services/projects";
 
 function LatestProjects() {
+  const [projects, setProjects] = useState([])
+
+  useEffect(() => {
+    getProjects()
+      .then(data => setProjects(data))
+  }, [])
+  
   return (
     <section id='projects' className='min-h-screen flex justify-center items-center p-10'>
-      <div className='w-full flex flex-col items-center mt-2'>
+      <div className={styles.container}>
         <h2 className='text-center'>Proyectos destacados</h2>
         <p className='mb-16 max-w-2xl text-center'>Algunos de los proyectos que más me han gustado, en donde he podido utilizar mayor variedad de tecnologias  modernas</p>
-        <div className='max-w-7xl flex justify-center gap-16 flex-wrap mb-12'>
+        <div className={styles.gridContainer}>
           {projects
-            .filter((project) => project.isFavorite === true)
-            .map((project) => {
+            .filter((project) => project.attributes.isFavorite === true)
+            .map(({ attributes, id }) => {
               return(
                 <Card
-                  key={project.id}
-                  src={project.src} 
-                  url={project.url}
-                  title={project.title}
-                  description={project.description}
-                  tags={project.stack}
+                  key={id}
+                  src={getCoverImage({ attributes })} 
+                  title={attributes.name}
+                  repoUrl={attributes.repository}
+                  demoUrl={attributes.url}
                 />
             )
           })}

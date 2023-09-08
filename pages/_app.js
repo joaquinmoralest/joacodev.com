@@ -3,6 +3,7 @@ import '../styles/globals.css'
 import { initializeApp } from "firebase/app"
 import { getAnalytics } from "firebase/analytics"
 import { getFirestore } from "firebase/firestore"
+import Script from 'next/script';
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -24,7 +25,13 @@ export const app = initializeApp(firebaseConfig)
 export const db = getFirestore(app)
 
 function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />
+  return (
+    <>
+      <Component {...pageProps} />
+      <Script src='https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js' />
+      <Script src='https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js' />
+    </>
+  )
 }
 
 export default MyApp
