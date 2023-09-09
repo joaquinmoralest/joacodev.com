@@ -1,21 +1,29 @@
+import { useEffect, useState } from "react"
 import Card from "../../components/Card"
 import Layout from "../../components/Layout"
-import { projects } from "../../data/projects"
+import { getCoverImage, getProjects } from "../../services/projects"
 
 function Portfolio() {
+  const [projects, setProjects] = useState([])
+
+  useEffect(() => {
+    getProjects()
+      .then(data => setProjects(data))
+  }, [])
+
   return (
     <Layout>
       <h2 className="pt-16 text-center">Portfolio</h2>
-      <section className="flex justify-center mt-12">
-        <div className='max-w-6xl flex justify-center gap-16 flex-wrap mb-12'>
-          {projects.map(project => {
+      <section className="flex justify-center m-12">
+        <div className='grid gap-12 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 grid-flow-row'>
+          {projects.map(({ attributes, id }) => {
             return(
               <Card 
-                key={project.id}
-                src={project.src} 
-                url={project.url}
-                title={project.title}
-                description={project.description}
+                key={id}
+                src={getCoverImage({ attributes })}
+                title={attributes.name}
+                description={attributes.description}
+                tags={attributes.stack}
               />
             )
           })}
