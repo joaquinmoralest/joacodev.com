@@ -12,9 +12,9 @@ function Navbar() {
   }, [screen])
 
   return (
-    <nav className='w-full p-5 flex justify-between bg-slate-900 border-b-zinc-100 text-slate-400 fixed z-10'>
+    <>
       {screen > 720
-      ? <>
+      ? <nav className='w-full p-5 flex justify-between bg-slate-900 border-b-zinc-100 text-slate-400 fixed z-10'>
           <div>
             <p>JoacoDev</p>
           </div>
@@ -24,7 +24,7 @@ function Navbar() {
             <Link className='hover:text-slate-200 transition ease-in-out duration-300' href='/portfolio'>Portafolio</Link>
             <Link className='hover:text-slate-200 transition ease-in-out duration-300' href='/blog'>Blog</Link>
           </div>
-        </>
+        </nav>
       : <BurgerMenu>
           <Link className='text-xl' href='/'>Inicio</Link>
           <Link className='text-xl' href='/about'>Sobre mi</Link>
@@ -32,7 +32,7 @@ function Navbar() {
           <Link className='text-xl' href='/blog'>Blog</Link>
         </BurgerMenu>
       }
-    </nav>
+    </>
   )
 }
 
