@@ -9,17 +9,6 @@ export async function getProjects() {
   return data
 }
 
-export async function getProject(id) {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/projects/${id}?populate[cover][fields][0]=url`)
-
-  if (!res.ok) {
-    throw new Error("Something went wrong")
-  }
-
-  const { data } = await res.json()
-  return data
-}
-
 export function getCoverImage({ attributes }) {
   const { url } = attributes.cover.data.attributes
   return `${process.env.NEXT_PUBLIC_API_URL}${url}`

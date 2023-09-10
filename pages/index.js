@@ -3,7 +3,7 @@ import Header from '../components/Header'
 import LatestProjects from '../components/LatestProjects'
 import Skills from '../components/Skills'
 
-export default function Home({ data }) {
+export default function Home() {
   return (
     <Layout
       title="Joaquín Morales - Software developer"
