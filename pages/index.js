@@ -1,9 +1,10 @@
-import Layout from '../components/Layout'
-import Header from '../components/Header'
-import LatestProjects from '../components/LatestProjects'
-import Skills from '../components/Skills'
+import Layout from "../components/Layout";
+import Header from "../components/Header";
+import LatestProjects from "../components/LatestProjects";
+import Skills from "../components/Skills";
+import { Client } from "@notionhq/client";
 
-export default function Home() {
+export default function Home({ projects }) {
   return (
     <Layout
       title="Joaquín Morales - Software developer"
@@ -11,7 +12,7 @@ export default function Home() {
     >
       <Header />
       <main>
-        <LatestProjects />
+        <LatestProjects projects={projects} />
         {/* SECCION ULTIMAS PUBLICACIONES DEL BLOG */}
         {/* <section className='p-10 min-h-screen flex justify-center items-center'>
           <div className='w-full flex flex-col items-center'>
@@ -43,5 +44,47 @@ export default function Home() {
         <Skills />
       </main>
     </Layout>
-  )
+  );
+}
+
+export async function getStaticProps() {
+  const notion = new Client({ auth: process.env.NOTION_KEY });
+
+  let data = null;
+  let projects = [];
+
+  try {
+    data = await notion.databases.query({
+      database_id: process.env.NOTION_DATABASE_ID,
+    });
+  } catch (error) {
+    console.log("un error", error);
+  }
+
+  data.results.forEach((project) => {
+    if (project.object === "page") {
+      let mapData = null;
+
+      mapData = {
+        id: project.id,
+        cover: project.cover?.file?.url ? project.cover?.file?.url : null,
+        title: project.properties?.Name?.title[0]?.plain_text ? project.properties?.Name?.title[0]?.plain_text : null,
+        description: project.properties?.Description?.rich_text[0]?.plain_text
+          ? project.properties?.Description?.rich_text[0]?.plain_text
+          : null,
+        stack: project.properties?.Stack?.multi_select ? project.properties?.Stack?.multi_select : null,
+        repoUrl: project.properties?.Repository?.url ? project.properties?.Repository?.url : null,
+        demoUrl: project.properties?.Demo?.url ? project.properties?.Demo?.url : null,
+        isFavorite: project.properties?.Favorite?.checkbox,
+      };
+
+      projects.push(mapData);
+    }
+  });
+
+  return {
+    props: {
+      projects,
+    },
+  };
 }
