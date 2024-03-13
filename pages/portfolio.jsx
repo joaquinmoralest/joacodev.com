@@ -30,14 +30,14 @@ function Portfolio({ projects }) {
 }
 
 export async function getStaticProps() {
-  const notion = new Client({ auth: process.env.NEXT_PUBLIC_NOTION_KEY });
+  const notion = new Client({ auth: process.env.NOTION_KEY });
 
   let data = null;
   let projects = [];
 
   try {
     data = await notion.databases.query({
-      database_id: process.env.NEXT_PUBLIC_NOTION_DATABASE_ID,
+      database_id: process.env.NOTION_DATABASE_ID,
     });
   } catch (error) {
     console.log("un error", error);
