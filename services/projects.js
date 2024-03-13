@@ -1,15 +1,10 @@
-export async function getProjects() {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/projects?populate[cover][fields][0]=url`)
+const { Client } = require("@notionhq/client");
+const notion = new Client({ auth: process.env.NOTION_KEY });
 
-  if (!res.ok) {
-    throw new Error("Something went wrong")
-  }
+export async function anyfunction() {
+  return notion.pages.retrieve({
+    page_id: process.env.NOTION_PAGE_ID,
+  });
 
-  const { data } = await res.json()
-  return data
-}
-
-export function getCoverImage({ attributes }) {
-  const { url } = attributes.cover.data.attributes
-  return `${process.env.NEXT_PUBLIC_API_URL}${url}`
+  // return { props: { data } };
 }

@@ -1,37 +1,73 @@
-import { useEffect, useState } from "react"
-import Card from "../components/Card"
-import Layout from "../components/Layout"
-import { getCoverImage, getProjects } from "../services/projects"
+import Card from "../components/Card";
+import Layout from "../components/Layout";
+import { Client } from "@notionhq/client";
 
-function Portfolio() {
-  const [projects, setProjects] = useState([])
-
-  useEffect(() => {
-    getProjects()
-      .then(data => setProjects(data))
-  }, [])
+function Portfolio({ projects }) {
+  console.log(projects);
 
   return (
     <Layout>
       <h2 className="pt-16 text-center">Portfolio</h2>
       <section className="flex justify-center my-12 mx-auto w-10/12 max-w-6xl">
-        <div className='grid gap-12 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 grid-flow-row'>
-          {projects.map(({ attributes, id }) => {
-            return(
-              <Card 
+        <div className="grid gap-12 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 grid-flow-row">
+          {projects.map(({ id, cover, title, description, stack, repoUrl, demoUrl }) => {
+            return (
+              <Card
                 key={id}
-                src={getCoverImage({ attributes })}
-                title={attributes.name}
-                description={attributes.description}
-                tags={attributes.stack}
+                src={cover}
+                title={title}
+                description={description}
+                tags={stack}
+                repoUrl={repoUrl}
+                demoUrl={demoUrl}
               />
-            )
+            );
           })}
         </div>
       </section>
     </Layout>
-
-  )
+  );
 }
 
-export default Portfolio
+export async function getStaticProps() {
+  const notion = new Client({ auth: process.env.NEXT_PUBLIC_NOTION_KEY });
+
+  let data = null;
+  let projects = [];
+
+  try {
+    data = await notion.databases.query({
+      database_id: process.env.NEXT_PUBLIC_NOTION_DATABASE_ID,
+    });
+  } catch (error) {
+    console.log("un error", error);
+  }
+
+  data.results.forEach((project) => {
+    if (project.object === "page") {
+      let mapData = null;
+
+      mapData = {
+        id: project.id,
+        cover: project.cover?.file?.url ? project.cover?.file?.url : null,
+        title: project.properties?.Name?.title[0]?.plain_text ? project.properties?.Name?.title[0]?.plain_text : null,
+        description: project.properties?.Description?.rich_text[0]?.plain_text
+          ? project.properties?.Description?.rich_text[0]?.plain_text
+          : null,
+        stack: project.properties?.Stack?.multi_select ? project.properties?.Stack?.multi_select : null,
+        repoUrl: project.properties?.Repository?.url ? project.properties?.Repository?.url : null,
+        demoUrl: project.properties?.Demo?.url ? project.properties?.Demo?.url : null,
+      };
+
+      projects.push(mapData);
+    }
+  });
+
+  return {
+    props: {
+      projects,
+    },
+  };
+}
+
+export default Portfolio;
