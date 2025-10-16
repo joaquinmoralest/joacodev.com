@@ -29,15 +29,15 @@ function Portfolio({ projects }) {
   );
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const notion = new Client({ auth: process.env.NOTION_KEY });
 
   let data = null;
   let projects = [];
 
   try {
-    data = await notion.databases.query({
-      database_id: process.env.NOTION_DATABASE_ID,
+    data = await notion.dataSources.query({
+      data_source_id: process.env.NOTION_DATA_SOURCE_ID,
     });
   } catch (error) {
     console.log("un error", error);

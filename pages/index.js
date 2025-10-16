@@ -47,21 +47,21 @@ export default function Home({ projects }) {
   );
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const notion = new Client({ auth: process.env.NOTION_KEY });
 
   let data = null;
   let projects = [];
 
   try {
-    data = await notion.databases.query({
-      database_id: process.env.NOTION_DATABASE_ID,
+    data = await notion.dataSources.query({
+      data_source_id: '208c15a2-7237-48fa-ab1c-aee92b06b9ec',
     });
   } catch (error) {
     console.log("un error", error);
   }
 
-  data.results.forEach((project) => {
+  data.results?.forEach((project) => {
     if (project.object === "page") {
       let mapData = null;
 
