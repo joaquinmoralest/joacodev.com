@@ -11,7 +11,7 @@
   "dependencies": {
     "@next/font": "^13.0.3",
     "@notion-render/client": "^0.0.2",
-    "@notionhq/client": "^2.2.14",
+    "@notionhq/client": "^5.2.0",
     "eslint": "8.27.0",
     "eslint-config-next": "13.0.3",
     "firebase": "^9.16.0",
