@@ -3,8 +3,6 @@ import Layout from "../components/Layout";
 import { Client } from "@notionhq/client";
 
 function Portfolio({ projects }) {
-  console.log(projects);
-
   return (
     <Layout>
       <h2 className="pt-16 text-center">Portfolio</h2>
@@ -37,7 +35,7 @@ export async function getServerSideProps() {
 
   try {
     data = await notion.dataSources.query({
-      data_source_id: process.env.NOTION_DATA_SOURCE_ID,
+      data_source_id: '208c15a2-7237-48fa-ab1c-aee92b06b9ec',
     });
   } catch (error) {
     console.log("un error", error);
