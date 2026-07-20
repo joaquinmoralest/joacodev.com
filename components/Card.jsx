@@ -2,7 +2,7 @@ import Tag from "./Tag";
 
 function Card({ src, title, description, tags, repoUrl, demoUrl }) {
   return (
-    <article className="group flex h-full flex-col overflow-hidden rounded-3xl border border-white/10 bg-ink-900/60 shadow-2xl shadow-black/20 backdrop-blur-xl transition hover:-translate-y-1 hover:border-white/20 hover:shadow-glow">
+    <article className="group flex h-full flex-col overflow-hidden rounded-3xl border border-white/10 bg-ink-900/60 shadow-2xl backdrop-blur-xl transition hover:-translate-y-1 hover:border-white/20 hover:shadow-glow">
       <div className="relative aspect-video overflow-hidden bg-ink-800">
         {src ? (
           // eslint-disable-next-line @next/next/no-img-element

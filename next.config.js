@@ -6,7 +6,6 @@ const nextConfig = {
       {
         protocol: 'https',
         hostname: 'cdn.jsdelivr.net',
-        port: '',
         pathname: '/gh/devicons/devicon/icons/**'
       },
       {
