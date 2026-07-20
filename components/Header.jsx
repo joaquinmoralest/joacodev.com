@@ -19,12 +19,14 @@ function Header() {
           />
         </div>
 
-        <p className="eyebrow mb-4">JoacoDev</p>
+        <p className="eyebrow mb-4">Joaquín Morales</p>
         <h1 className="font-display max-w-3xl text-3xl font-extrabold tracking-tight text-white sm:text-4xl lg:text-5xl">
-          Construyo productos web con foco en claridad y detalle
+          Construyo productos digitales que resuelven problemas reales
         </h1>
-        <p className="mt-5 max-w-xl text-base leading-7 text-ink-400 sm:text-lg">
-          Soy Joaquín, desarrollador frontend. Diseño y desarrollo interfaces modernas, rápidas y con personalidad.
+        <p className="mt-5 max-w-2xl text-base leading-7 text-ink-400 sm:text-lg">
+          Desarrollador Full Stack especializado en aplicaciones web modernas. Diseño, desarrollo y despliego
+          soluciones escalables utilizando tecnologías como Angular, NestJS, TypeScript y servicios cloud, siempre con
+          foco en la experiencia de usuario y la calidad del producto.
         </p>
         <div className="mt-8 flex flex-wrap justify-center gap-3">
           <a href="#projects" className="primary-button">
