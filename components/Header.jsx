@@ -1,39 +1,44 @@
 import Image from "next/image";
-import SocialNetworks from "./SocialNetworks";
-import styles from "../styles/Home.module.css"
-import { useEffect, useState } from "react";
+import Link from "next/link";
 
 function Header() {
-  const [isMobile, setIsMobile] = useState(false)
+  return (
+    <section className="relative isolate overflow-hidden py-16 sm:py-24">
+      <div className="orb -left-24 top-10 h-72 w-72 bg-brand-500/20" aria-hidden="true" />
+      <div className="orb -right-16 bottom-10 h-80 w-80 bg-accent-500/15" aria-hidden="true" />
 
-  useEffect(() => {
-    let screenWidth = window.screen.width
-
-    if (screenWidth < 420) {
-      setIsMobile(true)
-    } else {
-      setIsMobile(false)
-    }
-  }, [])
-
-  return ( 
-    <header className="flex items-center flex-col">
-      <div className={styles.header}>
-        <div className={styles.info}>
-          <div className={styles.presentation}>
-            <h1 className='mb-3'>¡Hola! Soy Joaquín</h1>
-            <p>Desarrollador Frontend hace alrededor de 2 años. Comencé como autodidacta aprendiendo a hacer paginas web con html y css, hasta que me di cuenta que era algo que me apasionaba. Desde ese momento comence a aprender cada vez más realizando proyectos para pulir mis habilidades...</p>
-            <a href='#projects' className={styles.btnPrimary}>Ver proyectos</a>
-          </div>
-          <div className={styles.avatar}>
-            <Image src="/images/profile-pic.png" width={1000} height={1000} alt='Foto de Joaquin' />
-          </div>
+      <div className="section-shell relative flex flex-col items-center text-center animate-enter-up">
+        <div className="relative mb-8 h-[180px] w-[180px] shrink-0 overflow-hidden rounded-full border border-white/10 shadow-glow animate-fade-in">
+          <Image
+            src="/images/profile-pic.png"
+            alt="Foto de Joaquín Morales"
+            width={180}
+            height={180}
+            priority
+            className="h-full w-full object-cover object-top"
+          />
         </div>
 
-        <SocialNetworks absolute isMobile={isMobile} />
+        <p className="eyebrow mb-4">Joaquín Morales</p>
+        <h1 className="font-display max-w-3xl text-3xl font-extrabold tracking-tight text-white sm:text-4xl lg:text-5xl">
+          Construyo productos digitales que resuelven problemas reales
+        </h1>
+        <p className="mt-5 max-w-2xl text-base leading-7 text-ink-400 sm:text-lg">
+          Desarrollador Full Stack especializado en aplicaciones web modernas. Diseño, desarrollo y despliego
+          soluciones escalables utilizando tecnologías como Angular, NestJS, TypeScript y servicios cloud, siempre con
+          foco en la experiencia de usuario y la calidad del producto.
+        </p>
+        <div className="mt-8 flex flex-wrap justify-center gap-3">
+          <a href="#projects" className="primary-button">
+            Ver proyectos
+          </a>
+          <Link href="/portfolio" className="secondary-button">
+            Portafolio completo
+          </Link>
+        </div>
       </div>
-    </header>
-  )
+    </section>
+  );
 }
 
 export default Header;
