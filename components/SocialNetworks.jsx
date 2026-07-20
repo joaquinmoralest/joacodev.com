@@ -1,24 +1,49 @@
-import Image from 'next/image'
-import { useEffect, useState } from 'react'
-import styles from '../styles/SocialNetworks.module.css'
+import Image from "next/image";
 
-function SocialNetworks({ absolute, isMobile }) {
+const networks = [
+  {
+    href: "https://www.instagram.com/joacodev_cl/",
+    src: "/icons/instagram.svg",
+    alt: "Instagram",
+    size: 22,
+  },
+  {
+    href: "https://twitter.com/JoacoDev_cl",
+    src: "/icons/twitter.svg",
+    alt: "Twitter",
+    size: 26,
+  },
+  {
+    href: "https://www.linkedin.com/in/joaquin-morales-trincado/",
+    src: "/icons/linkedin.svg",
+    alt: "LinkedIn",
+    size: 20,
+  },
+  {
+    href: "https://github.com/joaquinmoralest",
+    src: "/icons/github.svg",
+    alt: "GitHub",
+    size: 24,
+  },
+];
+
+function SocialNetworks({ className = "" }) {
   return (
-    <div className={`${styles.rrss} ${absolute && styles.absolute} ${isMobile && styles.hide}`}>
-      <a href='https://www.instagram.com/joacodev_cl/' target='_blank' rel='noreferrer'>
-        <Image src="/icons/instagram.svg" width={35} height={35} alt='logo instagram' />
-      </a>
-      <a href='https://twitter.com/JoacoDev_cl' target='_blank' rel='noreferrer'>
-        <Image src="/icons/twitter.svg" width={45} height={45} alt='logo twitter' />
-      </a>
-      <a href='https://www.linkedin.com/in/joaquin-morales-trincado/' target='_blank' rel='noreferrer'>
-        <Image src="/icons/linkedin.svg" width={32} height={32} alt='linkedin' />
-      </a>
-      <a href='https://github.com/joaquinmoralest' target='_blank' rel='noreferrer'>
-        <Image src="/icons/github.svg" width={40} height={40} alt='logo github' />
-      </a>
+    <div className={`flex items-center gap-4 ${className}`}>
+      {networks.map(({ href, src, alt, size }) => (
+        <a
+          key={href}
+          href={href}
+          target="_blank"
+          rel="noreferrer"
+          className="opacity-70 transition hover:opacity-100 hover:-translate-y-0.5"
+          aria-label={alt}
+        >
+          <Image src={src} width={size} height={size} alt={alt} />
+        </a>
+      ))}
     </div>
-  )
+  );
 }
 
-export default SocialNetworks
+export default SocialNetworks;
