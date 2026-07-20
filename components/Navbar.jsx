@@ -1,39 +1,87 @@
-import Link from "next/link"
-import BurgerMenu from "./BurgerMenu"
-import { useEffect, useState } from "react"
+import Link from "next/link";
+import { useRouter } from "next/router";
+import { useState } from "react";
 
-function Navbar() {
-  const [screen, setScreen] = useState()
+const links = [
+  { href: "/", label: "Inicio" },
+  { href: "/about", label: "Sobre mí" },
+  { href: "/portfolio", label: "Portafolio" },
+  { href: "/blog", label: "Blog" },
+];
 
-  useEffect(() => {
-    const screenWidth = window.screen.width
-
-    setScreen(screenWidth)
-  }, [screen])
+function NavLink({ href, label, onClick, className = "" }) {
+  const router = useRouter();
+  const isActive = href === "/" ? router.pathname === "/" : router.pathname.startsWith(href);
 
   return (
-    <>
-      {screen > 720
-      ? <nav className='w-full p-5 flex justify-between bg-slate-900 border-b-zinc-100 text-slate-400 fixed z-10'>
-          <div>
-            <p>JoacoDev</p>
-          </div>
-          <div className='w-72 flex justify-between'>
-            <Link className='hover:text-slate-200 transition ease-in-out duration-300' href='/'>Inicio</Link>
-            <Link className='hover:text-slate-200 transition ease-in-out duration-300' href='/about'>Sobre mi</Link>
-            <Link className='hover:text-slate-200 transition ease-in-out duration-300' href='/portfolio'>Portafolio</Link>
-            <Link className='hover:text-slate-200 transition ease-in-out duration-300' href='/blog'>Blog</Link>
-          </div>
-        </nav>
-      : <BurgerMenu>
-          <Link className='text-xl' href='/'>Inicio</Link>
-          <Link className='text-xl' href='/about'>Sobre mi</Link>
-          <Link className='text-xl' href='/portfolio'>Portafolio</Link>
-          <Link className='text-xl' href='/blog'>Blog</Link>
-        </BurgerMenu>
-      }
-    </>
-  )
+    <Link
+      href={href}
+      onClick={onClick}
+      className={`text-sm font-semibold transition ${
+        isActive ? "text-white" : "text-ink-400 hover:text-white"
+      } ${className}`}
+    >
+      {label}
+    </Link>
+  );
 }
 
-export default Navbar
+function Navbar() {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <header className="sticky top-0 z-50 border-b border-white/10 bg-ink-950/80 backdrop-blur-xl">
+      <nav className="section-shell flex h-16 items-center justify-between">
+        <Link href="/" className="font-display text-lg font-extrabold tracking-tight text-white">
+          Joaco<span className="bg-gradient-to-r from-brand-400 to-accent-400 bg-clip-text text-transparent">Dev</span>
+        </Link>
+
+        <div className="hidden items-center gap-8 md:flex">
+          {links.map((link) => (
+            <NavLink key={link.href} {...link} />
+          ))}
+        </div>
+
+        <button
+          type="button"
+          aria-label={isOpen ? "Cerrar menú" : "Abrir menú"}
+          aria-expanded={isOpen}
+          onClick={() => setIsOpen((open) => !open)}
+          className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-ink-200 transition hover:bg-white/10 md:hidden"
+        >
+          <span className="sr-only">Menú</span>
+          <span className="flex flex-col gap-1.5">
+            <span
+              className={`block h-0.5 w-5 rounded-full bg-ink-200 transition ${
+                isOpen ? "translate-y-2 rotate-45" : ""
+              }`}
+            />
+            <span className={`block h-0.5 w-5 rounded-full bg-ink-200 transition ${isOpen ? "opacity-0" : ""}`} />
+            <span
+              className={`block h-0.5 w-5 rounded-full bg-ink-200 transition ${
+                isOpen ? "-translate-y-2 -rotate-45" : ""
+              }`}
+            />
+          </span>
+        </button>
+      </nav>
+
+      {isOpen && (
+        <div className="border-t border-white/10 bg-ink-950/95 px-4 py-4 backdrop-blur-xl md:hidden">
+          <div className="flex flex-col gap-4">
+            {links.map((link) => (
+              <NavLink
+                key={link.href}
+                {...link}
+                onClick={() => setIsOpen(false)}
+                className="py-1 text-base"
+              />
+            ))}
+          </div>
+        </div>
+      )}
+    </header>
+  );
+}
+
+export default Navbar;

@@ -2,49 +2,107 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+  color-scheme: dark;
+  scroll-behavior: smooth;
+}
+
 html,
 body {
-  padding: 0;
+  min-height: 100%;
+}
+
+body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-  color: azure;
-  font-size: 16px;
-  scroll-behavior: smooth;
-  background-color: #0f172a;
+  font-family: var(--font-manrope), "Segoe UI", system-ui, sans-serif;
+  background:
+    radial-gradient(circle at 12% -8%, rgb(54 151 255 / 14%), transparent 28rem),
+    radial-gradient(circle at 88% 8%, rgb(20 184 166 / 10%), transparent 26rem),
+    #090d14;
+  color: #e9edf5;
+  -webkit-font-smoothing: antialiased;
 }
 
-h1 {
-  font-size: 3rem;
-  font-weight: 600;
+::selection {
+  background: rgb(54 151 255 / 35%);
+  color: white;
 }
 
-h2 {
-  font-size: 2.5rem;
-  font-weight: 500;
+button,
+a,
+input,
+textarea {
+  -webkit-tap-highlight-color: transparent;
 }
 
+button,
 a {
-  color: inherit;
-  text-decoration: none;
+  outline-offset: 3px;
 }
 
-* {
-  box-sizing: border-box;
+@layer components {
+  .eyebrow {
+    @apply text-xs font-bold uppercase tracking-[0.18em] text-brand-400;
+  }
+
+  .page-title {
+    @apply font-display text-2xl font-extrabold tracking-tight text-white sm:text-3xl;
+  }
+
+  .page-description {
+    @apply mt-2 max-w-2xl text-sm leading-6 text-ink-400 sm:text-base;
+  }
+
+  .surface-card {
+    @apply rounded-3xl border p-5 shadow-2xl backdrop-blur-xl sm:p-7;
+    border-color: rgb(255 255 255 / 0.1);
+    background-color: rgb(17 22 32 / 0.75);
+    box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+  }
+
+  .surface-card-soft {
+    @apply rounded-2xl border;
+    border-color: rgb(255 255 255 / 0.1);
+    background-color: rgb(255 255 255 / 0.03);
+  }
+
+  .primary-button {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl bg-brand-500 px-5 py-2.5 text-sm font-bold text-white shadow-lg transition hover:-translate-y-0.5 hover:bg-brand-400;
+    min-height: 44px;
+    box-shadow: 0 10px 15px -3px rgb(31 116 244 / 0.2);
+  }
+
+  .primary-button:hover {
+    box-shadow: 0 10px 15px -3px rgb(54 151 255 / 0.3);
+  }
+
+  .secondary-button {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl border px-5 py-2.5 text-sm font-semibold text-ink-200 transition hover:-translate-y-0.5 hover:text-white;
+    min-height: 44px;
+    border-color: rgb(255 255 255 / 0.1);
+    background-color: rgb(255 255 255 / 0.05);
+  }
+
+  .secondary-button:hover {
+    border-color: rgb(255 255 255 / 0.2);
+    background-color: rgb(255 255 255 / 0.1);
+  }
+
+  .section-shell {
+    @apply mx-auto w-full max-w-6xl px-4 sm:px-6;
+  }
+
+  .orb {
+    @apply pointer-events-none absolute rounded-full blur-3xl;
+  }
 }
 
-@media (max-width: 420px) {
-  h1 {
-    font-size: 2.5rem;
-  }
-
-  h2 {
-    font-size: 2rem;
-    line-height: 35px;
-    padding-bottom: 6px;
-  }
-
-  p {
-    font-size: 14px;
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }
